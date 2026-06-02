@@ -145,6 +145,16 @@
         .cert-info p{font-size:.82rem;color:var(--mid);line-height:1.5}
         .cert-issuer{display:flex;align-items:center;gap:5px;margin-top:.7rem;font-size:.78rem;font-weight:600;color:var(--accent)}
         .credly-wrap{width:120px;min-height:215px}
+        .cert-view-link{display:inline-flex;align-items:center;gap:5px;margin-top:.8rem;font-size:.78rem;font-weight:600;color:var(--accent);text-decoration:none;transition:opacity .2s}
+        .cert-view-link:hover{opacity:.7}
+
+        /* ─── Cert Tabs ─── */
+        .certs-tabs{display:flex;gap:.6rem;margin-bottom:2rem;border-bottom:1px solid var(--border);padding-bottom:0}
+        .certs-tab{background:none;border:none;padding:.65rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;color:var(--mid);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:var(--transition);display:flex;align-items:center;gap:7px;border-radius:0}
+        .certs-tab:hover{color:var(--ink)}
+        .certs-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+        .certs-tab-panel{display:none}
+        .certs-tab-panel.active{display:block}
 
         /* ─── Projects ─── */
         .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
@@ -438,43 +448,87 @@
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-tag">Credentials</div>
-                <h2 class="section-title">Certifications</h2>
+                <h2 class="section-title">Certifications &amp; Courses</h2>
             </div>
-            <div class="certs-grid">
 
-                <!-- Credly Badge -->
-                <div class="cert-card reveal reveal-delay-1">
-                    <div class="cert-badge-wrap credly-wrap">
-                        <div data-iframe-width="120" data-iframe-height="215" data-share-badge-id="90453588-448b-408a-9274-ba1ac06230e9" data-share-badge-host="https://www.credly.com"></div>
-                    </div>
-                    <div class="cert-info">
-                        <h4>Professional Certification</h4>
-                        <p>Verified digital badge issued via Credly, demonstrating validated competency in a specialised domain of study.</p>
-                        <div class="cert-issuer"><i class="fas fa-award"></i> Verified by Credly</div>
-                    </div>
-                </div>
-
-                <!-- AWS ML & AI -->
-                <div class="cert-card reveal reveal-delay-2">
-                    <div class="cert-icon"><i class="fas fa-brain"></i></div>
-                    <div class="cert-info">
-                        <h4>Fundamentals of Machine Learning &amp; Artificial Intelligence</h4>
-                        <p>Completed Amazon Web Services (AWS) course covering the foundations of ML and AI, including core concepts, use cases, and AWS AI/ML services.</p>
-                        <div class="cert-issuer"><i class="fab fa-aws"></i> Amazon Web Services · Coursera</div>
-                    </div>
-                </div>
-
-                <!-- More coming -->
-                <div class="cert-card reveal reveal-delay-4" style="opacity:.4;pointer-events:none">
-                    <div class="cert-icon"><i class="fas fa-plus"></i></div>
-                    <div class="cert-info">
-                        <h4>More Certifications</h4>
-                        <p>Continuously building credentials in cloud, AI, and software development.</p>
-                        <div class="cert-issuer"><i class="fas fa-clock"></i> In Progress</div>
-                    </div>
-                </div>
-
+            <!-- Tab buttons -->
+            <div class="certs-tabs reveal">
+                <button class="certs-tab active" data-tab="certifications">
+                    <i class="fas fa-award"></i> Certifications
+                </button>
+                <button class="certs-tab" data-tab="short-courses">
+                    <i class="fas fa-book-open"></i> Short Courses
+                </button>
             </div>
+
+            <!-- Certifications tab -->
+            <div class="certs-tab-panel active" id="tab-certifications">
+                <div class="certs-grid">
+
+                    <!-- Credly Badge -->
+                    <div class="cert-card reveal reveal-delay-1">
+                        <div class="cert-badge-wrap credly-wrap">
+                            <div data-iframe-width="120" data-iframe-height="215" data-share-badge-id="90453588-448b-408a-9274-ba1ac06230e9" data-share-badge-host="https://www.credly.com"></div>
+                        </div>
+                        <div class="cert-info">
+                            <h4>Professional Certification</h4>
+                            <p>Verified digital badge issued via Credly, demonstrating validated competency in a specialised domain of study.</p>
+                            <div class="cert-issuer"><i class="fas fa-award"></i> Verified by Credly</div>
+                        </div>
+                    </div>
+
+                    <!-- AWS ML & AI -->
+                    <div class="cert-card reveal reveal-delay-2">
+                        <div class="cert-icon"><i class="fas fa-brain"></i></div>
+                        <div class="cert-info">
+                            <h4>Fundamentals of Machine Learning &amp; Artificial Intelligence</h4>
+                            <p>Completed Amazon Web Services (AWS) course covering the foundations of ML and AI, including core concepts, use cases, and AWS AI/ML services.</p>
+                            <div class="cert-issuer"><i class="fab fa-aws"></i> Amazon Web Services · Coursera</div>
+                        </div>
+                    </div>
+
+                    <!-- More coming -->
+                    <div class="cert-card reveal reveal-delay-3" style="opacity:.4;pointer-events:none">
+                        <div class="cert-icon"><i class="fas fa-plus"></i></div>
+                        <div class="cert-info">
+                            <h4>More Certifications</h4>
+                            <p>Continuously building credentials in cloud, AI, and software development.</p>
+                            <div class="cert-issuer"><i class="fas fa-clock"></i> In Progress</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Short Courses tab -->
+            <div class="certs-tab-panel" id="tab-short-courses">
+                <div class="certs-grid">
+
+                    <!-- Python -->
+                    <div class="cert-card reveal reveal-delay-1">
+                        <div class="cert-icon"><i class="fab fa-python"></i></div>
+                        <div class="cert-info">
+                            <h4>Fundamentals of Python</h4>
+                            <p>Short course covering Python syntax, data structures, functions, and introductory problem-solving — completed via Coursera.</p>
+                            <div class="cert-issuer"><i class="fas fa-graduation-cap"></i> Coursera · Short Course</div>
+                            <a href="https://www.coursera.org/account/accomplishments/records/1E7Z63GVU3OG" target="_blank" class="cert-view-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
+                        </div>
+                    </div>
+
+                    <!-- WordPress -->
+                    <div class="cert-card reveal reveal-delay-2">
+                        <div class="cert-icon"><i class="fab fa-wordpress"></i></div>
+                        <div class="cert-info">
+                            <h4>WordPress Fundamentals</h4>
+                            <p>Short course covering core WordPress concepts including themes, plugins, content management, and site configuration — completed via Coursera.</p>
+                            <div class="cert-issuer"><i class="fas fa-graduation-cap"></i> Coursera · Short Course</div>
+                            <a href="https://www.coursera.org/account/accomplishments/records/HTWHE7WTH3E8" target="_blank" class="cert-view-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -687,6 +741,16 @@
             window.location.href=`mailto:thatomothapo9@gmail.com?subject=${encodeURIComponent(s)}&body=${encodeURIComponent('Name: '+n+'\nEmail: '+em+'\n\nMessage: '+m)}`;
             document.getElementById('contactForm').reset();
         }
+
+        // Cert tabs
+        document.querySelectorAll('.certs-tab').forEach(tab=>{
+            tab.addEventListener('click',()=>{
+                document.querySelectorAll('.certs-tab').forEach(t=>t.classList.remove('active'));
+                document.querySelectorAll('.certs-tab-panel').forEach(p=>p.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('tab-'+tab.dataset.tab).classList.add('active');
+            });
+        });
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(a=>{
