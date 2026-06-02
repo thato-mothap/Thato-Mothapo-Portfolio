@@ -2,7 +2,7 @@
 
 A personal portfolio website built from scratch and deployed via **GitHub → Netlify**.
 
-Live site: [https://thatomothapo.netlify.app](https://thatomothapo.netlify.app) *(update with your actual URL)*
+Live site: [https://thato-mothapo-portfolio.netlify.app/](https://thato-mothapo-portfolio.netlify.app/) 
 
 ---
 
