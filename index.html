@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thato Mothapo | Computer Science Portfolio</title>
+    <!-- SEO & Open Graph for GitHub/Netlify discovery -->
+    <meta name="description" content="Thato Mothapo — BSc Computer Science graduate from Eduvos Midrand. Full-stack developer, project manager, and tech enthusiast based in Pretoria, South Africa.">
+    <meta name="keywords" content="Thato Mothapo, Computer Science, Developer, Portfolio, South Africa, Pretoria, Eduvos, PHP, C#, C++, JavaScript, React, MySQL">
+    <meta name="author" content="Thato Mothapo">
+    <meta property="og:title" content="Thato Mothapo | Computer Science Portfolio">
+    <meta property="og:description" content="Final-year BSc Computer Science graduate. Full-stack developer & project manager based in Pretoria, SA.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ink: #0d0d0d;
+            --paper: #f5f3ef;
+            --accent: #2563eb;
+            --accent-soft: rgba(37,99,235,0.08);
+            --mid: #6b7280;
+            --card: #ffffff;
+            --border: #e5e1d8;
+            --nav-bg: rgba(245,243,239,0.9);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.07);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        [data-theme="dark"] {
+            --ink: #f0ece4;
+            --paper: #111110;
+            --accent: #60a5fa;
+            --accent-soft: rgba(96,165,250,0.1);
+            --mid: #9ca3af;
+            --card: #1c1b19;
+            --border: #2a2926;
+            --nav-bg: rgba(17,17,16,0.9);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.3);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);transition:background .4s ease,color .4s ease;overflow-x:hidden}
+        body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.025;pointer-events:none;z-index:0}
+
+        .cursor{width:10px;height:10px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
+        .cursor-ring{width:36px;height:36px;border:1.5px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5}
+        .container{max-width:1100px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+        /* ─── Nav ─── */
+        header{position:fixed;top:0;width:100%;z-index:1000;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:var(--transition)}
+        nav{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0}
+        .logo{font-family:'DM Serif Display',serif;font-size:1.25rem;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+        .logo span{color:var(--accent)}
+        .nav-links{display:flex;list-style:none;align-items:center;gap:2rem}
+        .nav-links a{color:var(--mid);text-decoration:none;font-size:.88rem;font-weight:500;letter-spacing:.03em;transition:color .2s}
+        .nav-links a:hover{color:var(--ink)}
+        .nav-controls{display:flex;align-items:center;gap:1rem}
+        .theme-toggle{background:var(--card);border:1px solid var(--border);color:var(--mid);width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition);font-size:.85rem}
+        .theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+        .hamburger{display:none;background:none;border:none;color:var(--ink);font-size:1.3rem;cursor:pointer}
+
+        /* ─── Hero ─── */
+        .hero{min-height:100vh;display:flex;align-items:center;padding-top:90px;position:relative}
+        .hero::after{content:'';position:absolute;top:10%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,.06) 0%,transparent 70%);pointer-events:none;z-index:0}
+        .hero-content{display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center}
+        .hero-label{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:600;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;background:var(--accent-soft);padding:6px 14px;border-radius:100px;margin-bottom:1.5rem}
+        .hero-label::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse-dot 2s infinite}
+        @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+        .hero-text h1{font-family:'DM Serif Display',serif;font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:1.2rem}
+        .hero-text h1 em{font-style:italic;color:var(--accent)}
+        .hero-text p{font-size:1.05rem;color:var(--mid);line-height:1.7;max-width:520px;margin-bottom:2.2rem}
+        .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+        .btn{display:inline-flex;align-items:center;gap:8px;padding:.75rem 1.6rem;border-radius:100px;font-size:.9rem;font-weight:500;cursor:pointer;text-decoration:none;border:none;transition:var(--transition);font-family:'DM Sans',sans-serif}
+        .btn-primary{background:var(--ink);color:var(--paper)}
+        .btn-primary:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.25)}
+        .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--border)}
+        .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+        .hero-image{position:relative}
+        .profile-frame{width:260px;height:260px;border-radius:30% 70% 70% 30%/30% 30% 70% 70%;overflow:hidden;border:3px solid var(--border);box-shadow:var(--shadow-lg);animation:morph 8s ease-in-out infinite}
+        @keyframes morph{0%,100%{border-radius:30% 70% 70% 30%/30% 30% 70% 70%}25%{border-radius:58% 42% 75% 25%/76% 46% 54% 24%}50%{border-radius:50% 50% 33% 67%/55% 27% 73% 45%}75%{border-radius:33% 67% 58% 42%/63% 68% 32% 37%}}
+        .profile-frame img{width:100%;height:100%;object-fit:cover}
+        .profile-fallback{width:100%;height:100%;background:linear-gradient(135deg,var(--accent-soft),var(--border));display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:5rem;color:var(--accent)}
+        .hero-chip{position:absolute;background:var(--card);border:1px solid var(--border);border-radius:100px;padding:7px 14px;font-size:.78rem;font-weight:500;display:flex;align-items:center;gap:6px;box-shadow:var(--shadow-sm);white-space:nowrap}
+        .hero-chip:nth-child(2){top:-10px;right:-30px;animation:float 4s ease-in-out infinite}
+        .hero-chip:nth-child(3){bottom:30px;left:-40px;animation:float 4s ease-in-out 1.5s infinite}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        .hero-chip i{color:var(--accent)}
+
+        /* ─── Section base ─── */
+        section{padding:6rem 0}
+        .section-header{margin-bottom:3.5rem}
+        .section-tag{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+        .section-title{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.02em;line-height:1.1}
+        .divider{height:1px;background:var(--border)}
+
+        /* ─── About ─── */
+        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+        .about-text p{color:var(--mid);line-height:1.8;margin-bottom:1rem;font-size:.97rem}
+
+        /* Skills tags */
+        .skills-block{margin-top:2rem}
+        .skills-block+.skills-block{margin-top:1.8rem}
+        .skills-block-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
+        .skills-block-label::after{content:'';flex:1;height:1px;background:var(--border)}
+        .tags-cloud{display:flex;flex-wrap:wrap;gap:.5rem}
+        .tag{background:var(--card);border:1px solid var(--border);padding:5px 13px;border-radius:100px;font-size:.8rem;font-weight:500;color:var(--ink);transition:var(--transition);cursor:default}
+        .tag:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+        .tag.accent{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+
+        /* Skill bars (right col) */
+        .skills-grid{display:grid;gap:1.1rem}
+        .skill-item{}
+        .skill-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+        .skill-name-text{font-size:.88rem;font-weight:500}
+        .skill-track{height:4px;background:var(--border);border-radius:100px;overflow:hidden}
+        .skill-fill{height:100%;background:var(--accent);border-radius:100px;width:0%;transition:width 1.3s cubic-bezier(.4,0,.2,1)}
+
+        /* ─── Experience ─── */
+        #experience{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+        .exp-list{display:flex;flex-direction:column;gap:0}
+        .exp-item{display:grid;grid-template-columns:180px 1fr;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--border)}
+        .exp-item:last-child{border-bottom:none}
+        .exp-date{font-size:.8rem;color:var(--mid);font-weight:500;padding-top:4px;line-height:1.5}
+        .exp-date .exp-type{display:inline-block;margin-top:6px;background:var(--accent-soft);color:var(--accent);border-radius:100px;padding:2px 10px;font-size:.72rem;font-weight:600}
+        .exp-body h4{font-size:1.05rem;font-weight:600;margin-bottom:2px}
+        .exp-body .exp-org{font-size:.88rem;color:var(--accent);font-weight:500;margin-bottom:.6rem}
+        .exp-body p{font-size:.88rem;color:var(--mid);line-height:1.7}
+        .exp-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
+        .exp-tag{background:var(--paper);border:1px solid var(--border);padding:3px 10px;border-radius:100px;font-size:.74rem;font-weight:500;color:var(--mid)}
+        [data-theme="dark"] .exp-tag{background:var(--paper)}
+
+        /* ─── Certifications ─── */
+        .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+        .cert-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;display:flex;gap:1.2rem;align-items:flex-start;transition:var(--transition)}
+        .cert-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);border-color:var(--accent)}
+        .cert-badge-wrap{flex-shrink:0}
+        .cert-icon{width:52px;height:52px;background:var(--accent-soft);border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.4rem;flex-shrink:0}
+        .cert-info h4{font-size:1rem;font-weight:600;margin-bottom:.3rem;line-height:1.3}
+        .cert-info p{font-size:.82rem;color:var(--mid);line-height:1.5}
+        .cert-issuer{display:flex;align-items:center;gap:5px;margin-top:.7rem;font-size:.78rem;font-weight:600;color:var(--accent)}
+        .credly-wrap{width:120px;min-height:215px}
+
+        /* ─── Projects ─── */
+        .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+        .project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:var(--transition);display:flex;flex-direction:column}
+        .project-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-5px);border-color:var(--accent)}
+        .project-img-wrap{height:190px;overflow:hidden;position:relative}
+        .project-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+        .project-card:hover .project-img-wrap img{transform:scale(1.06)}
+        .project-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.35),transparent)}
+        .project-badge{position:absolute;top:12px;left:12px;background:var(--card);border-radius:100px;padding:4px 12px;font-size:.72rem;font-weight:600;color:var(--accent);border:1px solid var(--accent-soft)}
+        .project-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:.75rem}
+        .project-body h3{font-family:'DM Serif Display',serif;font-size:1.2rem;line-height:1.2}
+        .project-body .project-meta{font-size:.78rem;color:var(--mid)}
+        .project-body p{font-size:.875rem;color:var(--mid);line-height:1.65;flex:1}
+        .tech-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+        .tech-tag{background:var(--accent-soft);color:var(--accent);padding:4px 10px;border-radius:100px;font-size:.74rem;font-weight:500}
+        .project-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;gap:1rem}
+        .project-link{font-size:.82rem;font-weight:500;color:var(--mid);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .2s}
+        .project-link:hover{color:var(--accent)}
+
+        /* ─── Contact ─── */
+        .contact-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:start}
+        .contact-info-cards{display:flex;flex-direction:column;gap:.8rem}
+        .contact-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--ink);transition:var(--transition)}
+        .contact-card:hover{border-color:var(--accent);transform:translateX(4px)}
+        .contact-card-icon{width:40px;height:40px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+        .contact-card-info h5{font-size:.78rem;color:var(--mid);margin-bottom:2px}
+        .contact-card-info span{font-size:.9rem;font-weight:500}
+        .form-group{margin-bottom:1.2rem}
+        .form-group label{display:block;font-size:.82rem;font-weight:500;margin-bottom:.4rem;color:var(--mid)}
+        .form-control{width:100%;padding:.75rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--ink);transition:var(--transition)}
+        .form-control:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+        textarea.form-control{min-height:130px;resize:vertical}
+
+        /* ─── Footer ─── */
+        footer{border-top:1px solid var(--border);padding:2rem 0}
+        .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+        .footer-copy{font-size:.82rem;color:var(--mid)}
+        .social-links{display:flex;gap:.7rem}
+        .social-link{width:36px;height:36px;background:var(--card);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--mid);font-size:.85rem;text-decoration:none;transition:var(--transition)}
+        .social-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+        .back-to-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;background:var(--ink);color:var(--paper);border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transition:var(--transition);z-index:999;font-size:.9rem;border:none}
+        .back-to-top.active{opacity:1;visibility:visible}
+        .back-to-top:hover{background:var(--accent);transform:translateY(-3px)}
+
+        /* ─── Scroll reveal ─── */
+        .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .reveal-delay-1{transition-delay:.1s}
+        .reveal-delay-2{transition-delay:.2s}
+        .reveal-delay-3{transition-delay:.3s}
+        .reveal-delay-4{transition-delay:.4s}
+
+        /* ─── Responsive ─── */
+        @media(max-width:900px){
+            .hero-content{grid-template-columns:1fr}
+            .hero-image{display:none}
+            .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem}
+            .exp-item{grid-template-columns:1fr;gap:.5rem}
+            .exp-date{display:flex;align-items:center;gap:10px;padding-top:0}
+        }
+        @media(max-width:768px){
+            .nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:var(--nav-bg);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border)}
+            .nav-links.active{display:flex}
+            .hamburger{display:block}
+            .cursor,.cursor-ring{display:none}
+        }
+        @media(max-width:480px){.projects-grid,.certs-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- ─── Header ─── -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Thato<span>.</span></a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-controls">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                    <button class="hamburger" id="hamburger" aria-label="Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ─── Hero ─── -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-label">Available for opportunities</div>
+                    <h1>Thato<br><em>Mothapo</em></h1>
+                    <p>BSc Computer Science graduate from Eduvos Midrand. I build purposeful software — from e-commerce platforms to embedded systems — and lead teams that deliver. Based in Pretoria, South Africa.</p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">View My Work <i class="fas fa-arrow-right"></i></a>
+                        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-frame">
+                        <img src="thato-profile-pic.webp" alt="Thato Mothapo" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'profile-fallback\'>TM</div>'">
+                    </div>
+                    <div class="hero-chip"><i class="fas fa-map-marker-alt"></i> Pretoria, SA</div>
+                    <div class="hero-chip"><i class="fas fa-graduation-cap"></i> Eduvos Midrand</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── About & Skills ─── -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">Who I Am</div>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            <div class="about-grid">
+                <!-- Left: bio + skill tags -->
+                <div class="reveal reveal-delay-1">
+                    <div class="about-text">
+                        <p>I'm a BSc Computer Science graduate from Eduvos Midrand, passionate about using technology to solve real-world problems. With a strong foundation in mathematics and problem-solving, I continuously explore software development, algorithm design, and user experience.</p>
+                        <p>My academic journey has given me hands-on experience in full-stack development, database management, and systems thinking — including embedded work with Raspberry Pi and Arduino. I served as <strong>Project Manager</strong> during my final year group project, leading team Null &amp; Void to deliver a fully functional e-commerce platform.</p>
+                        <p>I also bring freelance experience building websites for clients, and real-world work experience as an exam invigilator — environments that demand precision, adaptability, and accountability under pressure.</p>
+                    </div>
+
+                    <!-- Technical Skills -->
+                    <div class="skills-block">
+                        <div class="skills-block-label">Technical Skills</div>
+                        <div class="tags-cloud">
+                            <span class="tag">C#</span>
+                            <span class="tag">C++</span>
+                            <span class="tag">Java</span>
+                            <span class="tag">PHP</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">React</span>
+                            <span class="tag">HTML &amp; CSS</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">Neo4J</span>
+                            <span class="tag">AWS</span>
+                            <span class="tag">WordPress</span>
+                            <span class="tag">Machine Learning &amp; AI</span>
+                            <span class="tag">Raspberry Pi</span>
+                            <span class="tag">Arduino</span>
+                            <span class="tag">Cisco Packet Tracer</span>
+                            <span class="tag">VS Code</span>
+                            <span class="tag">Visual Studio</span>
+                            <span class="tag">NetBeans</span>
+                            <span class="tag">Microsoft Office Suite</span>
+                            <span class="tag">Computer Literacy</span>
+                        </div>
+                    </div>
+
+                    <!-- Soft Skills -->
+                    <div class="skills-block">
+                        <div class="skills-block-label">Soft Skills</div>
+                        <div class="tags-cloud">
+                            <span class="tag accent">Problem Solving</span>
+                            <span class="tag accent">Project Management</span>
+                            <span class="tag accent">Team Leadership</span>
+                            <span class="tag accent">Strategic Planning</span>
+                            <span class="tag accent">Adaptability</span>
+                            <span class="tag accent">Communication</span>
+                            <span class="tag accent">Collaboration</span>
+                            <span class="tag accent">Time Management</span>
+                            <span class="tag accent">Attention to Detail</span>
+                            <span class="tag accent">Critical Thinking</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: animated skill bars (core proficiencies) -->
+                <div class="reveal reveal-delay-2">
+                    <div style="margin-bottom:1rem;">
+                        <p style="font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);margin-bottom:1.2rem;">Core Proficiencies</p>
+                    </div>
+                    <div class="skills-grid" id="skillsGrid">
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name-text">C# Programming</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name-text">Web Development (HTML/CSS/JS)</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="82"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name-text">C++ Programming</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name-text">PHP &amp; MySQL</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="75"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name-text">Project Management</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name-text">Python</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="70"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name-text">Databases (SQL / MongoDB / Neo4J)</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="74"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name-text">Embedded Systems</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="68"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name-text">AWS &amp; Cloud Fundamentals</span></div>
+                            <div class="skill-track"><div class="skill-fill" data-width="65"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ─── Experience ─── -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">Work History</div>
+                <h2 class="section-title">Experience</h2>
+            </div>
+            <div class="exp-list">
+
+                <div class="exp-item reveal reveal-delay-1">
+                    <div class="exp-date">
+                        2025 – Present
+                        <span class="exp-type">Freelance</span>
+                    </div>
+                    <div class="exp-body">
+                        <h4>Freelance Web Developer</h4>
+                        <div class="exp-org">Self-Employed</div>
+                        <p>Designing and developing websites and web solutions for clients, applying full-stack skills gained throughout my degree. Projects range from business landing pages to more complex web applications — managing client relationships, scoping requirements, and delivering responsive, polished final products independently.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">HTML/CSS/JS</span>
+                            <span class="exp-tag">PHP</span>
+                            <span class="exp-tag">WordPress</span>
+                            <span class="exp-tag">Client Management</span>
+                            <span class="exp-tag">Problem Solving</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exp-item reveal reveal-delay-2">
+                    <div class="exp-date">
+                        2023 – 2026
+                        <span class="exp-type">Part-time</span>
+                    </div>
+                    <div class="exp-body">
+                        <h4>Exam Invigilator</h4>
+                        <div class="exp-org">PMI Adcorp</div>
+                        <p>Responsible for maintaining the integrity and smooth running of formal examinations across various venues. This role demanded strict attention to detail, the ability to remain calm and authoritative under pressure, and excellent time management. Gained practical experience in regulatory compliance, professional conduct, and high-stakes coordination.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Attention to Detail</span>
+                            <span class="exp-tag">Time Management</span>
+                            <span class="exp-tag">Compliance</span>
+                            <span class="exp-tag">Professionalism</span>
+                            <span class="exp-tag">Communication</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ─── Certifications ─── -->
+    <section id="certifications">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">Credentials</div>
+                <h2 class="section-title">Certifications</h2>
+            </div>
+            <div class="certs-grid">
+
+                <!-- Credly Badge -->
+                <div class="cert-card reveal reveal-delay-1">
+                    <div class="cert-badge-wrap credly-wrap">
+                        <div data-iframe-width="120" data-iframe-height="215" data-share-badge-id="90453588-448b-408a-9274-ba1ac06230e9" data-share-badge-host="https://www.credly.com"></div>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Professional Certification</h4>
+                        <p>Verified digital badge issued via Credly, demonstrating validated competency in a specialised domain of study.</p>
+                        <div class="cert-issuer"><i class="fas fa-award"></i> Verified by Credly</div>
+                    </div>
+                </div>
+
+                <!-- AWS ML & AI -->
+                <div class="cert-card reveal reveal-delay-2">
+                    <div class="cert-icon"><i class="fas fa-brain"></i></div>
+                    <div class="cert-info">
+                        <h4>Fundamentals of Machine Learning &amp; Artificial Intelligence</h4>
+                        <p>Completed Amazon Web Services (AWS) course covering the foundations of ML and AI, including core concepts, use cases, and AWS AI/ML services.</p>
+                        <div class="cert-issuer"><i class="fab fa-aws"></i> Amazon Web Services · Coursera</div>
+                    </div>
+                </div>
+
+                <!-- More coming -->
+                <div class="cert-card reveal reveal-delay-4" style="opacity:.4;pointer-events:none">
+                    <div class="cert-icon"><i class="fas fa-plus"></i></div>
+                    <div class="cert-info">
+                        <h4>More Certifications</h4>
+                        <p>Continuously building credentials in cloud, AI, and software development.</p>
+                        <div class="cert-issuer"><i class="fas fa-clock"></i> In Progress</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ─── Projects ─── -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">What I've Built</div>
+                <h2 class="section-title">Projects</h2>
+            </div>
+            <div class="projects-grid">
+
+                <!-- Omnia Truck & Trailer -->
+                <div class="project-card reveal reveal-delay-1">
+                    <div class="project-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80" alt="Omnia Truck and Trailer">
+                        <div class="project-img-overlay"></div>
+                        <span class="project-badge">Final Year · Group</span>
+                    </div>
+                    <div class="project-body">
+                        <h3>Omnia Truck &amp; Trailer</h3>
+                        <div class="project-meta">Jul 2025 – Nov 2025 · Eduvos · Team: Null &amp; Void</div>
+                        <p>Full e-commerce platform for Omnia Truck and Trailer. As <strong>Project Manager</strong>, I led team Null &amp; Void — coordinating tasks, managing timelines, and driving collaboration. Features include a landing page, services listing, and a booking system, built across a wide stack spanning our full degree curriculum.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Project Management</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://www.linkedin.com/in/thato-mothapo-267234218/" target="_blank" class="project-link"><i class="fab fa-linkedin"></i> View on LinkedIn</a>
+                        <span class="project-link" style="cursor:default"><i class="fas fa-info-circle"></i> Hosted · Decommissioned</span>
+                    </div>
+                </div>
+
+                <!-- E-KASI Marketplace -->
+                <div class="project-card reveal reveal-delay-2">
+                    <div class="project-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=800&q=80" alt="E-KASI Marketplace">
+                        <div class="project-img-overlay"></div>
+                        <span class="project-badge">Academic</span>
+                    </div>
+                    <div class="project-body">
+                        <h3>E-KASI C2C Marketplace</h3>
+                        <div class="project-meta">Final Year Individual Project</div>
+                        <p>A consumer-to-consumer e-commerce platform built for South African townships, empowering local entrepreneurs to list, browse, and sell goods in a kasi-first digital marketplace.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://ekasimarketplace.byethost22.com" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- This Portfolio -->
+                <div class="project-card reveal reveal-delay-3">
+                    <div class="project-img-wrap">
+                        <img src="thato-profile-pic.webp" alt="Thato Mothapo Portfolio" style="object-position:top" onerror="this.src='https://images.unsplash.com/photo-1618477388954-7852f32655ec?auto=format&fit=crop&w=800&q=80'">
+                        <div class="project-img-overlay"></div>
+                        <span class="project-badge">Personal</span>
+                    </div>
+                    <div class="project-body">
+                        <h3>This Portfolio</h3>
+                        <div class="project-meta">2025 · Personal Project</div>
+                        <p>Designed and built entirely from scratch — no frameworks, no templates. Features dark mode, morphing profile animation, custom cursor, scroll-reveal effects, and a fully responsive layout. Deployed via GitHub to Netlify.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Netlify</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://github.com/thato-mothap" target="_blank" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ─── Contact ─── -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">Let's Talk</div>
+                <h2 class="section-title">Get In Touch</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info-cards reveal reveal-delay-1">
+                    <a href="mailto:thatomothapo9@gmail.com" class="contact-card">
+                        <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-card-info"><h5>Email</h5><span>thatomothapo9@gmail.com</span></div>
+                    </a>
+                    <a href="tel:+27605045253" class="contact-card">
+                        <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contact-card-info"><h5>Phone / WhatsApp</h5><span>060 504 5253</span></div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/thato-mothapo-267234218/" target="_blank" class="contact-card">
+                        <div class="contact-card-icon"><i class="fab fa-linkedin"></i></div>
+                        <div class="contact-card-info"><h5>LinkedIn</h5><span>Thato Mothapo</span></div>
+                    </a>
+                    <a href="https://github.com/thato-mothap" target="_blank" class="contact-card">
+                        <div class="contact-card-icon"><i class="fab fa-github"></i></div>
+                        <div class="contact-card-info"><h5>GitHub</h5><span>thato-mothap</span></div>
+                    </a>
+                    <a href="https://wa.me/27605045253" target="_blank" class="contact-card">
+                        <div class="contact-card-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="contact-card-info"><h5>WhatsApp</h5><span>Message me directly</span></div>
+                    </a>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <form id="contactForm" onsubmit="sendEmail(event)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" placeholder="What's this about?" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Tell me about your project or opportunity..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+                            Send Message <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Footer ─── -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <p class="footer-copy">&copy; 2025 Thato Mothapo. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/thato-mothapo-267234218/" class="social-link" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/thato-mothap" class="social-link" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:thatomothapo9@gmail.com" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://wa.me/27605045253" class="social-link" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+    <script>
+        // Cursor
+        const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+        let mx=0,my=0,rx=0,ry=0;
+        document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
+        (function animateRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing)})();
+
+        // Theme
+        const toggle=document.getElementById('themeToggle'),icon=document.getElementById('themeIcon');
+        const saved=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+        if(saved==='dark'){document.body.setAttribute('data-theme','dark');icon.className='fas fa-sun'}
+        toggle.addEventListener('click',()=>{
+            const dark=document.body.getAttribute('data-theme')==='dark';
+            if(dark){document.body.removeAttribute('data-theme');icon.className='fas fa-moon';localStorage.setItem('theme','light')}
+            else{document.body.setAttribute('data-theme','dark');icon.className='fas fa-sun';localStorage.setItem('theme','dark')}
+        });
+
+        // Hamburger
+        const ham=document.getElementById('hamburger'),nav=document.getElementById('navLinks');
+        ham.addEventListener('click',()=>{nav.classList.toggle('active');ham.querySelector('i').className=nav.classList.contains('active')?'fas fa-times':'fas fa-bars'});
+        nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('active');ham.querySelector('i').className='fas fa-bars'}));
+
+        // Back to top
+        const btt=document.getElementById('backToTop');
+        window.addEventListener('scroll',()=>btt.classList.toggle('active',scrollY>300));
+        btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+        // Scroll reveal
+        const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1});
+        document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+        // Skill bars
+        const fills=document.querySelectorAll('.skill-fill');
+        const skillObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){fills.forEach(f=>{f.style.width=f.dataset.width+'%'});skillObs.unobserve(e.target)}})},{threshold:.3});
+        const sg=document.getElementById('skillsGrid');if(sg)skillObs.observe(sg);
+
+        // Contact form
+        function sendEmail(e){
+            e.preventDefault();
+            const n=document.getElementById('name').value,em=document.getElementById('email').value,
+                  s=document.getElementById('subject').value,m=document.getElementById('message').value;
+            window.location.href=`mailto:thatomothapo9@gmail.com?subject=${encodeURIComponent(s)}&body=${encodeURIComponent('Name: '+n+'\nEmail: '+em+'\n\nMessage: '+m)}`;
+            document.getElementById('contactForm').reset();
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a=>{
+            a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}});
+        });
+    </script>
+</body>
+</html>
