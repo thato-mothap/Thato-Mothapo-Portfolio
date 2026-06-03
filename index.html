@@ -144,6 +144,8 @@
         .cert-info h4{font-size:1rem;font-weight:600;margin-bottom:.3rem;line-height:1.3}
         .cert-info p{font-size:.82rem;color:var(--mid);line-height:1.5}
         .cert-issuer{display:flex;align-items:center;gap:5px;margin-top:.7rem;font-size:.78rem;font-weight:600;color:var(--accent)}
+        .cert-img{width:120px;border-radius:8px;display:block;transition:opacity .2s}
+        .cert-img:hover{opacity:.85}
         .credly-wrap{width:120px;min-height:215px}
         .cert-view-link{display:inline-flex;align-items:center;gap:5px;margin-top:.8rem;font-size:.78rem;font-weight:600;color:var(--accent);text-decoration:none;transition:opacity .2s}
         .cert-view-link:hover{opacity:.7}
@@ -210,8 +212,10 @@
 
         /* ─── Responsive ─── */
         @media(max-width:900px){
-            .hero-content{grid-template-columns:1fr}
-            .hero-image{display:none}
+            .hero-content{grid-template-columns:1fr;justify-items:center}
+            .hero-image{display:flex;justify-content:center;order:-1;margin-bottom:1.5rem}
+            .profile-frame{width:180px;height:180px}
+            .hero-chip{display:none}
             .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem}
             .exp-item{grid-template-columns:1fr;gap:.5rem}
             .exp-date{display:flex;align-items:center;gap:10px;padding-top:0}
@@ -487,8 +491,23 @@
                         </div>
                     </div>
 
+                    <!-- DevOps Professional Certificate -->
+                    <div class="cert-card reveal reveal-delay-3">
+                        <div class="cert-badge-wrap">
+                            <a href="https://www.linkedin.com/learning/certificates/cb691feb6688b09870de59b03f1162df479e049e873aa70f20f30164f8efac56" target="_blank">
+                                <img src="devops-cert.jpg" alt="DevOps Professional Certificate" class="cert-img">
+                            </a>
+                        </div>
+                        <div class="cert-info">
+                            <h4>DevOps Professional Certificate</h4>
+                            <p>7h 33min learning path covering CI/CD, DevOps practices, and Infrastructure as Code (IaC) — issued by PagerDuty &amp; LinkedIn Learning.</p>
+                            <div class="cert-issuer"><i class="fab fa-linkedin"></i> LinkedIn Learning · PagerDuty</div>
+                            <a href="https://www.linkedin.com/learning/certificates/cb691feb6688b09870de59b03f1162df479e049e873aa70f20f30164f8efac56" target="_blank" class="cert-view-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
+                        </div>
+                    </div>
+
                     <!-- More coming -->
-                    <div class="cert-card reveal reveal-delay-3" style="opacity:.4;pointer-events:none">
+                    <div class="cert-card reveal reveal-delay-4" style="opacity:.4;pointer-events:none">
                         <div class="cert-icon"><i class="fas fa-plus"></i></div>
                         <div class="cert-info">
                             <h4>More Certifications</h4>
